@@ -28,3 +28,4 @@ res <- basic_lee_bound_discrete(leedata)
 sharp_res_basic <- basic_lee_bound_discrete(myleedata)
 
 
+jtpa.zip includes the Oregon healthcare dataset.

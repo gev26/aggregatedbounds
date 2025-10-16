@@ -58,7 +58,7 @@ Your analysis data frame should include:
 ### From `utils.R`
 
 - `estimate_selection(leedata, form = NULL, selection_function_name, variables_for_selection = NULL, names_to_include = c(), treat_name = "treat", yname = "selection", myweights = NULL, ...)`
-  - Fits **selection/propensity** model; returns \(\hat s_d(x)\) or \(\hat \mu(x)\) objects used downstream.
+  - Fits **selection/propensity** model; returns $\(\hat s_d(x)\)$ or $\(\hat \mu(x)\)$ objects used downstream.
   - For selection problems: ensures the **always-taker share** and conditional selection probabilities are available.
 
 - Cross-fitting & bootstrap helpers  
@@ -73,10 +73,10 @@ Your analysis data frame should include:
     Combined orthogonal and non-orthogonal plug-ins; supports **discrete outcomes** when `mode = "discrete"` and `Y_levels` supplied.
 
 - **Horowitz–Manski–Lee (HML) bounds with discrete Y**  
-  - Functions to compute **basic** (no-covariate) and **sharp** (covariate-adjusted/envelope) bounds for \( \beta_1 = \mathbb{E}[Y(1)\mid S(1)=S(0)=1] \), including numerators/denominator and sorted bounds.
+  - Functions to compute **basic** (no-covariate) and **sharp** (covariate-adjusted/envelope) bounds for $\( \beta_1 = \mathbb{E}[Y(1)\mid S(1)=S(0)=1] \)$, including numerators/denominator and sorted bounds.
   - Expect arguments like:
-    - Fitted selection \( \hat s_0(0,x), \hat s_0(1,x) \),
-    - Treated outcome PMF \( \hat \pi_\beta(x) = P(Y=\beta\mid D=1,S=1,X=x) \) for \(\beta \in \mathcal{T}\),
+    - Fitted selection $\( \hat s_0(0,x), \hat s_0(1,x) \)$,
+    - Treated outcome PMF $\( \hat \pi_\beta(x) = P(Y=\beta\mid D=1,S=1,X=x) \)$ for $\(\beta \in \mathcal{T}\)$,
     - Cross-fitting control, bootstrap reps, and weights.
 
 - **Roy model bounds**  

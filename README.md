@@ -25,7 +25,7 @@ It follows the “envelope score” idea with cross-fitting and multiplier boots
   Targets parameters of the form  
 
 $$
-\psi_0 = \mathbb{E}_X\\left[\min_{t \in T}\, \phi(t, \nu_0(X))\right].
+\psi_0 = \mathbb{E}_X\\left[\min_{t \in T}\ \phi(t, \nu_0(X))\right].
 $$
 
 

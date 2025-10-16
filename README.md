@@ -22,7 +22,7 @@ It follows the “envelope score” idea with cross-fitting and multiplier boots
 ## Methods 
 
 - **Envelope score estimator**  
-  Targets parameters of the form \( \psi_0 = \mathbb{E}_X[\min_{t\in T}\, \phi(t,\nu_0(X))] \). We replace each \(\phi\) by an **orthogonal/DML** signal \(\rho(W,t,\xi_0)\) and evaluate it at the **estimated argmin** \(\hat t(X)\) with **cross-fitted** nuisances; asymptotically, this achieves an “oracle” property (first-order robust to misclassification of the minimizer).
+  Targets parameters of the form $\( \psi_0 = \mathbb{E}_X[\min_{t\in T}\, \phi(t,\nu_0(X))] \)$. We replace each \(\phi\) by an **orthogonal/DML** signal \(\rho(W,t,\xi_0)\) and evaluate it at the **estimated argmin** \(\hat t(X)\) with **cross-fitted** nuisances; asymptotically, this achieves an “oracle” property (first-order robust to misclassification of the minimizer).
 
 - **Orthogonality & cross-fitting**  
   Nuisance pieces (e.g., outcome regressions, selection/propensity models, class probabilities for discrete outcomes) are learned on held-out folds and plugged into orthogonal scores; this yields \( \sqrt{N} \)-consistent, asymptotically normal estimators under standard margin and rate conditions.

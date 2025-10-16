@@ -19,7 +19,7 @@ It follows the “envelope score” idea with cross-fitting and multiplier boots
 
 ---
 
-## Methods (one paragraph each)
+## Methods 
 
 - **Envelope score estimator**  
   Targets parameters of the form \( \psi_0 = \mathbb{E}_X[\min_{t\in T}\, \phi(t,\nu_0(X))] \). We replace each \(\phi\) by an **orthogonal/DML** signal \(\rho(W,t,\xi_0)\) and evaluate it at the **estimated argmin** \(\hat t(X)\) with **cross-fitted** nuisances; asymptotically, this achieves an “oracle” property (first-order robust to misclassification of the minimizer).
@@ -34,7 +34,7 @@ It follows the “envelope score” idea with cross-fitting and multiplier boots
 
 ## Data schema
 
-Your analysis data frame (call it `df`) should include:
+Your analysis data frame should include:
 
 | Column          | Type / Values                 | Notes |
 |-----------------|-------------------------------|-------|
@@ -45,14 +45,12 @@ Your analysis data frame (call it `df`) should include:
 
 ---
 
-## Key functions (API at a glance)
-
-> Function names below mirror what’s in the two files (based on the codebase). If your local names differ slightly, the descriptions still map 1-to-1.
+## Key functions 
 
 ### From `utils.R`
 
 - `estimate_selection(leedata, form = NULL, selection_function_name, variables_for_selection = NULL, names_to_include = c(), treat_name = "treat", yname = "selection", myweights = NULL, ...)`
-  - Fits **selection/propensity** models (e.g., logistic) possibly after a **post-lasso** step; returns \(\hat s_d(x)\) or \(\hat \mu(x)\) objects used downstream.
+  - Fits **selection/propensity** model; returns \(\hat s_d(x)\) or \(\hat \mu(x)\) objects used downstream.
   - For selection problems: ensures the **always-taker share** and conditional selection probabilities are available.
 
 - Cross-fitting & bootstrap helpers  
@@ -62,9 +60,9 @@ Your analysis data frame (call it `df`) should include:
 
 - **Envelope/Welfare (binary & discrete)**  
   - `main_bb_ortho(sample_size, N_rep = 10, leedata, s.hat, y.hat, flag_binary = TRUE, flag_helps = FALSE, ...)`  
-    Orthogonal (DML) bootstrap for average welfare and related functionals. Works for **binary** outcomes and (with flags) for **discrete** outcomes.
+    Orthogonal (DML) bootstrap for average welfare and related functionals. Works for **binary** outcomes and for **discrete** outcomes.
   - `main_bb_unified(leedata, N_rep = 500, mode = c("binary","discrete"), ...)`  
-    Unified entry point combining orthogonal and non-orthogonal plug-ins; supports **discrete outcomes** when `mode = "discrete"` and `Y_levels` supplied.
+    Combined orthogonal and non-orthogonal plug-ins; supports **discrete outcomes** when `mode = "discrete"` and `Y_levels` supplied.
 
 - **Horowitz–Manski–Lee (HML) bounds with discrete Y**  
   - Functions to compute **basic** (no-covariate) and **sharp** (covariate-adjusted/envelope) bounds for \( \beta_1 = \mathbb{E}[Y(1)\mid S(1)=S(0)=1] \), including numerators/denominator and sorted bounds.
@@ -74,22 +72,10 @@ Your analysis data frame (call it `df`) should include:
     - Cross-fitting control, bootstrap reps, and weights.
 
 - **Roy model bounds**  
-  - Estimators for the **min over instrument values** (or treatment arms) of conditional joint events, with optional aggregation over \(X\).
+  - Estimators for the **min over instrument values** (or treatment arms) of conditional joint events.
 
 > Tip: in **discrete** mode, provide `Y_levels` explicitly (sorted unique outcome support) when `outcome` is a **factor**.
 
 ---
 
-## Installation
 
-```r
-# R >= 4.2 recommended
-# Install suggested dependencies
-install.packages(c(
-  "glmnet",      # lasso/post-lasso
-  "nnet",        # multinomial logit for discrete Y
-  "Matrix", "data.table", "mltools"
-))
-
-# If you use cross-fitting with ML learners, add what you need, e.g.:
-# install.packages(c("ranger", "xgboost", "lightgbm"))
